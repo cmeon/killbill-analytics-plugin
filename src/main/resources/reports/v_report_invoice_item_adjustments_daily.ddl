@@ -2,7 +2,7 @@ create or replace view v_report_invoice_item_adjustments_daily as
 select
   aiia.tenant_record_id
 , aiia.currency
-, date_format(aiia.created_date,'%Y-%m-%d') as day
+, to_char(aiia.created_date,'YYYY-MM-DD') as day
 , sum(aiia.converted_amount) as count
 from
   analytics_invoice_item_adjustments aiia

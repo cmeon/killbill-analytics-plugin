@@ -1,7 +1,7 @@
 create or replace view v_report_conversions_daily as
 select
   ast.tenant_record_id
-, date_format(ast.next_start_date,'%Y-%m-%d') as day
+, ast.next_start_date::date as day
 , count(0) as count
 from
   analytics_subscription_transitions ast
