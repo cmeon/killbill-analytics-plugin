@@ -2,7 +2,7 @@ create table report_payments_by_provider_last_24h_summary as select * from v_rep
 
 drop procedure if exists refresh_report_payments_by_provider_last_24h_summary;
 
-CREATE PROCEDURE refresh_report_payments_by_provider_last_24h_summary() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_payments_by_provider_last_24h_summary() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

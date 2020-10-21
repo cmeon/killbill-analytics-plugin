@@ -3,7 +3,7 @@ create table if not exists report_payment_provider_errors as select * from v_rep
 
 drop procedure if exists refresh_report_payment_provider_errors;
 
-CREATE PROCEDURE refresh_report_payment_provider_errors() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_payment_provider_errors() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

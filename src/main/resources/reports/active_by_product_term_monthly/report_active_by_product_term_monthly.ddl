@@ -2,7 +2,7 @@ create table if not exists report_active_by_product_term_monthly as select * fro
 
 drop procedure if exists refresh_report_active_by_product_term_monthly;
 
-CREATE PROCEDURE refresh_report_active_by_product_term_monthly() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_active_by_product_term_monthly() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

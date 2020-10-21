@@ -2,7 +2,7 @@ create table if not exists report_mrr_daily as select * from v_report_mrr_daily 
 
 drop procedure if exists refresh_report_mrr_daily;
 
-CREATE PROCEDURE refresh_report_mrr_daily() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_mrr_daily() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

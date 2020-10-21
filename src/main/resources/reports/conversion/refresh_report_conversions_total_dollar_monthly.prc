@@ -1,6 +1,6 @@
 drop procedure if exists refresh_report_conversions_total_dollar_monthly;
-DELIMITER //
-CREATE PROCEDURE refresh_report_conversions_total_dollar_monthly()
+
+CREATE PROCEDURE refresh_report_conversions_total_dollar_monthly() language plpgsql as $$
 BEGIN
 
     DELETE FROM report_conversions_total_dollar_monthly;
@@ -34,6 +34,4 @@ BEGIN
     group by 1,2,3
     ;
 
-END;
-//
-DELIMITER ;
+END $$;

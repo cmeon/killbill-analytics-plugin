@@ -2,7 +2,7 @@ create table if not exists report_invoices_balance_daily as select * from v_repo
 
 drop procedure if exists refresh_report_invoices_balance_daily;
 
-CREATE PROCEDURE refresh_report_invoices_balance_daily() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_invoices_balance_daily() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

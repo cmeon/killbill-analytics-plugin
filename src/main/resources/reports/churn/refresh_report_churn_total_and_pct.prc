@@ -1,6 +1,6 @@
 drop procedure if exists refresh_report_churn_total_and_pct;
 
-CREATE PROCEDURE refresh_report_churn_total_and_pct() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_churn_total_and_pct() LANGUAGE plpgsql AS $$
 BEGIN
 
     -- Refresh Churn Dollars and Churn Percent for MONTHLY subscriptions
@@ -206,6 +206,4 @@ BEGIN
     ;
 
 
-END;
-//
-DELIMITER ;
+END $$;

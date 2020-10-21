@@ -2,7 +2,7 @@ create table report_payments_total_daily as select * from v_report_payments_tota
 
 drop procedure if exists refresh_report_payments_total_daily;
 
-CREATE PROCEDURE refresh_report_payments_total_daily() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_payments_total_daily() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

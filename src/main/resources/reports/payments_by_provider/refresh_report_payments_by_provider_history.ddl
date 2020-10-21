@@ -2,7 +2,7 @@ create table report_payments_by_provider_history as select * from v_report_payme
 
 drop procedure if exists refresh_report_payments_by_provider_history;
 
-CREATE PROCEDURE refresh_report_payments_by_provider_history() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_payments_by_provider_history() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

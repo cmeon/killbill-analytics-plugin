@@ -85,6 +85,16 @@ function seed()
 	for r in `find $folder -type f -name '*.sql' -o -name '*.ddl' -maxdepth 1`; do install_ddl $r; done
 }
 
+function seed_ranked()
+{
+	local folder=$1
+
+	echo "Seeding folder $folder"
+	for r in `find $folder -type f -name 'v_report_*.sql' -o -name 'v_*.ddl' -maxdepth 1`; do install_ddl $r; done
+	for r in `find $folder -type f -name 'report_*.sql' -o -name 'report_*.ddl' -maxdepth 1`; do install_ddl $r; done
+	for r in `find $folder -type f -name 'refresh_report_*.sql' -o -name 'refresh_report_*.ddl' -maxdepth 1`; do install_ddl $r; done
+}
+
 function print_help
 {
 	script_name=`basename "$0"`
@@ -123,7 +133,7 @@ do
 			if [ ! -d $1 ]; then
 				log_error "Invalid folder" "Should be a directory"
 			fi
-			seed $HERE/$1
+			seed_ranked $HERE/$1
 			;;
 		"-d"|"--default")
 			shift

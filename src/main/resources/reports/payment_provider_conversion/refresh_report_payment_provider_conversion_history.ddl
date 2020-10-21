@@ -2,7 +2,7 @@ create table if not exists report_payment_provider_conversion_history as select 
 
 drop procedure if exists refresh_report_payment_provider_conversion_history;
 
-CREATE PROCEDURE refresh_report_payment_provider_conversion_history() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_payment_provider_conversion_history() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;

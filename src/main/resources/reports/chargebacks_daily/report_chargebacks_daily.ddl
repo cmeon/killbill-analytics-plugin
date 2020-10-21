@@ -2,7 +2,7 @@ create table if not exists report_chargebacks_daily as select * from v_report_ch
 
 drop procedure if exists refresh_report_chargebacks_daily;
 
-CREATE PROCEDURE refresh_report_chargebacks_daily() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_chargebacks_daily() LANGUAGE plpgsql AS $$
 BEGIN
 
 -- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
