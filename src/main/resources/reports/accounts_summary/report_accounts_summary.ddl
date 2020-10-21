@@ -2,11 +2,11 @@ create table report_accounts_summary as select * from v_report_accounts_summary 
 
 drop procedure if exists refresh_report_accounts_summary;
 
-CREATE PROCEDURE refresh_report_accounts_summary() LANGUAGE SQL AS $$
+CREATE PROCEDURE refresh_report_accounts_summary() LANGUAGE plpgsql AS $$
 BEGIN
 
-DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
 
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 START TRANSACTION;
