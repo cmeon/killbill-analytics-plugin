@@ -1,8 +1,8 @@
 create table report_invoices_daily as select * from v_report_invoices_daily limit 0;
 
 drop procedure if exists refresh_report_invoices_daily;
-DELIMITER //
-CREATE PROCEDURE refresh_report_invoices_daily()
+
+CREATE PROCEDURE refresh_report_invoices_daily() LANGUAGE SQL AS $$
 BEGIN
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -14,6 +14,4 @@ START TRANSACTION;
   insert into report_invoices_daily select * from v_report_invoices_daily;
 COMMIT;
 
-END;
-//
-DELIMITER ;
+END $$;

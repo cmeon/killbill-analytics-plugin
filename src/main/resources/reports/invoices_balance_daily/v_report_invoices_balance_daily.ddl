@@ -1,7 +1,7 @@
 create or replace view v_report_invoices_balance_daily as
 select
   ai.tenant_record_id
-, date_format(ai.created_date,'%Y-%m-%d') as day
+, ai.created_date as day
 , sum(ai.converted_balance) as count
 from
   analytics_invoices ai

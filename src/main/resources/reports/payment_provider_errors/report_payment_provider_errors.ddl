@@ -2,8 +2,8 @@ create table report_payment_provider_errors_sub2 as select * from v_report_payme
 create table report_payment_provider_errors as select * from v_report_payment_provider_errors limit 0;
 
 drop procedure if exists refresh_report_payment_provider_errors;
-DELIMITER //
-CREATE PROCEDURE refresh_report_payment_provider_errors()
+
+CREATE PROCEDURE refresh_report_payment_provider_errors() LANGUAGE SQL AS $$
 BEGIN
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -37,6 +37,4 @@ START TRANSACTION;
   ;
 COMMIT;
 
-END;
-//
-DELIMITER ;
+END $$;

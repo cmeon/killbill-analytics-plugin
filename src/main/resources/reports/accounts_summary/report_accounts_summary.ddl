@@ -1,8 +1,8 @@
 create table report_accounts_summary as select * from v_report_accounts_summary limit 0;
 
 drop procedure if exists refresh_report_accounts_summary;
-DELIMITER //
-CREATE PROCEDURE refresh_report_accounts_summary()
+
+CREATE PROCEDURE refresh_report_accounts_summary() LANGUAGE SQL AS $$
 BEGIN
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -14,6 +14,4 @@ START TRANSACTION;
   insert into report_accounts_summary select * from v_report_accounts_summary;
 COMMIT;
 
-END;
-//
-DELIMITER ;
+END $$;

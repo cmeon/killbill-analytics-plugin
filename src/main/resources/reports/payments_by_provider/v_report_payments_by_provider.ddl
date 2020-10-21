@@ -26,7 +26,7 @@ SELECT
   end as pct_good
 , converted_amount
 , t1.converted_currency
-, sysdate() as refresh_date
+, CURRENT_DATE as refresh_date
 FROM v_report_payments_by_provider_sub2 t1
 INNER JOIN v_report_payments_by_provider_sub3 t2
 LEFT OUTER JOIN v_report_payments_by_provider_sub1 v1 on v1.plugin_name=t1.plugin_name

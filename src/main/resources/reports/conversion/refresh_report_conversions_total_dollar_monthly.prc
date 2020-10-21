@@ -19,7 +19,7 @@ BEGIN
     insert into report_conversions_total_dollar_monthly
     select
       ast.tenant_record_id
-    , date_format(next_start_date, '%Y-%m-01') day
+    , to_char(next_start_date, 'YYYY-MM-01')::date day
     , next_billing_period billing_period
     , round(sum(converted_next_price)) count
     from

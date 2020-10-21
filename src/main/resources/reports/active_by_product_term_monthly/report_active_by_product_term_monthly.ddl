@@ -1,8 +1,8 @@
 create table report_active_by_product_term_monthly as select * from v_report_active_by_product_term_monthly limit 0;
 
 drop procedure if exists refresh_report_active_by_product_term_monthly;
-DELIMITER //
-CREATE PROCEDURE refresh_report_active_by_product_term_monthly()
+
+CREATE PROCEDURE refresh_report_active_by_product_term_monthly() LANGUAGE SQL AS $$
 BEGIN
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -34,6 +34,4 @@ START TRANSACTION;
   ;
 COMMIT;
 
-END;
-//
-DELIMITER ;
+END $$;

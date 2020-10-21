@@ -2,7 +2,7 @@ create or replace view v_report_payment_provider_errors_sub1 as
 select
   aa.tenant_record_id
 , 'AUTH' as op
-, date_format(aa.created_date,'%Y-%m-%d') as day
+, aa.created_date as day
 , aa.currency
 , aa.plugin_name
 , aa.record_id
@@ -15,7 +15,7 @@ union
 select
   ap.tenant_record_id
 , 'PURCHASE' as op
-, date_format(ap.created_date,'%Y-%m-%d') as day
+, ap.created_date as day
 , ap.currency
 , ap.plugin_name
 , ap.record_id

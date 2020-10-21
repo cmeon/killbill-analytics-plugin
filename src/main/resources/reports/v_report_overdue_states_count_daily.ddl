@@ -6,7 +6,7 @@ select
 , count(1) as count
 from
   calendar cal
-  join analytics_account_transitions aat on aat.start_date::date = cal.d::date
+  join analytics_account_transitions aat on aat.start_date = cal.d
 where 1=1
   and aat.report_group='default'
   and aat.service='overdue-service'

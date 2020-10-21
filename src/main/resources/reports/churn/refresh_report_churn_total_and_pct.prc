@@ -1,6 +1,6 @@
 drop procedure if exists refresh_report_churn_total_and_pct;
-DELIMITER //
-CREATE PROCEDURE refresh_report_churn_total_and_pct()
+
+CREATE PROCEDURE refresh_report_churn_total_and_pct() LANGUAGE SQL AS $$
 BEGIN
 
     -- Refresh Churn Dollars and Churn Percent for MONTHLY subscriptions
@@ -35,7 +35,7 @@ BEGIN
     from (
     select
       ast.tenant_record_id
-    , date_format(next_start_date, '%Y-%m-01') month
+    , to_char(next_start_date, 'YYYY-MM-01')::date month
     , prev_billing_period
     , sum(converted_prev_price) amount
     from
@@ -55,7 +55,7 @@ BEGIN
     , sum(converted_next_price) amount
     from
       analytics_subscription_transitions ast
-      join calendar cal  on next_start_date < cal.d and (next_end_date > cal.d or next_end_date is null )  and (cal.d = date_format(cal.d, '%Y-%m-01')) and cal.d>='2013-01-01' and cal.d < sysdate()
+      join calendar cal  on next_start_date < cal.d and (next_end_date > cal.d or next_end_date is null )  and (cal.d = to_char(cal.d, 'YYYY-MM-01')::date) and cal.d>='2013-01-01'::date and cal.d < sysdate()
       join report_temp_churn_monthly_paid_bundles2 paid_bundles on ast.bundle_id = paid_bundles.bundle_id and ast.tenant_record_id = paid_bundles.tenant_record_id
     where 1=1
       and report_group='default'
@@ -153,7 +153,7 @@ BEGIN
     from (
     select
       ast.tenant_record_id
-    , date_format(next_start_date, '%Y-%m-01') month
+    , to_char(next_start_date, 'YYYY-MM-01') month
     , prev_billing_period
     , round(sum(converted_prev_price)) amount
     from
@@ -173,14 +173,14 @@ BEGIN
     , round(sum(converted_next_price)) amount
     from
       analytics_subscription_transitions ast
-      join calendar cal  on next_start_date < cal.d and (next_end_date > cal.d or next_end_date is null )  and (cal.d = date_format(cal.d, '%Y-%m-01')) and cal.d>='2013-01-01' and cal.d < sysdate()
+      join calendar cal  on next_start_date < cal.d and (next_end_date > cal.d or next_end_date is null )  and (cal.d = to_date(cal.d, 'YYYY-MM-01')) and cal.d>='2013-01-01'::date and cal.d < sysdate()
       join report_temp_churn_annual_paid_bundles2 paid_bundles on ast.bundle_id = paid_bundles.bundle_id and ast.tenant_record_id = paid_bundles.tenant_record_id
     where 1=1
       and report_group='default'
       and next_service='entitlement-service'
       and event not like 'STOP_ENTITLEMENT%'
       and next_billing_period in ('ANNUAL')
-      and extract(month from date_add(charged_through_date,interval 1 day)) = extract(month from cal.d)
+      and extract(month from (charged_through_date + interval '1' day)) = extract(month from cal.d)
     group by 1,2,3
     ) active_sub_dollar on churn_dollar.month=active_sub_dollar.month and churn_dollar.prev_billing_period=active_sub_dollar.next_billing_period and churn_dollar.tenant_record_id=active_sub_dollar.tenant_record_id
     ;
