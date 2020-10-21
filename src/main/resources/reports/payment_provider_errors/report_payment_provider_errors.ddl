@@ -1,5 +1,5 @@
-create table report_payment_provider_errors_sub2 as select * from v_report_payment_provider_errors_sub2 limit 0;
-create table report_payment_provider_errors as select * from v_report_payment_provider_errors limit 0;
+create table if not exists report_payment_provider_errors_sub2 as select * from v_report_payment_provider_errors_sub2 limit 0;
+create table if not exists report_payment_provider_errors as select * from v_report_payment_provider_errors limit 0;
 
 drop procedure if exists refresh_report_payment_provider_errors;
 

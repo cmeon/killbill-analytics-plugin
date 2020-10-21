@@ -1,4 +1,4 @@
-create table report_payment_provider_conversion_history as select * from v_report_payment_provider_conversion limit 0;
+create table if not exists report_payment_provider_conversion_history as select * from v_report_payment_provider_conversion limit 0;
 
 drop procedure if exists refresh_report_payment_provider_conversion_history;
 

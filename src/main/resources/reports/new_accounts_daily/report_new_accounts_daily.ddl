@@ -1,4 +1,4 @@
-create table report_new_accounts_daily as select * from v_report_new_accounts_daily limit 0;
+create table if not exists report_new_accounts_daily as select * from v_report_new_accounts_daily limit 0;
 
 drop procedure if exists refresh_report_new_accounts_daily;
 

@@ -1,4 +1,4 @@
-create table report_chargebacks_daily as select * from v_report_chargebacks_daily limit 0;
+create table if not exists report_chargebacks_daily as select * from v_report_chargebacks_daily limit 0;
 
 drop procedure if exists refresh_report_chargebacks_daily;
 
