@@ -1,4 +1,4 @@
-create table report_accounts_summary as select * from v_report_accounts_summary limit 0;
+create table if not exists report_accounts_summary as select * from v_report_accounts_summary limit 0;
 
 drop procedure if exists refresh_report_accounts_summary;
 
