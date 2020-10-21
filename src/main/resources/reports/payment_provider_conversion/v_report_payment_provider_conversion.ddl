@@ -30,8 +30,14 @@ AND rpccs1.merchant_account=rpccs2.merchant_account
 AND rpccs1.payment_method=rpccs2.payment_method
 AND rpccs1.tenant_record_id=rpccs2.tenant_record_id
 GROUP BY
-  plugin_name
-, merchant_account
-, payment_method
-, tenant_record_id
+  rpccs1.plugin_name
+, rpccs1.merchant_account
+, rpccs1.payment_method
+, rpccs1.tenant_record_id
+, rpccs1.current_success_count
+, rpccs2.historical_success_count
+, rpccs1.current_transaction_count
+, rpccs2.historical_transaction_count
+, rpccs1.current_customer_count
+, rpccs2.historical_customer_count
 ;

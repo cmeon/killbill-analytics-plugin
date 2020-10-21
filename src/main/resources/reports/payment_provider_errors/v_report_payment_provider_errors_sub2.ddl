@@ -4,7 +4,7 @@ select
 , v1.day
 , v1.currency
 , v1.plugin_name
-, substring_index(ifnull(apa.plugin_gateway_error, app.plugin_gateway_error), ' ', 10) as plugin_gateway_error
+, split_part(ifnull(apa.plugin_gateway_error, app.plugin_gateway_error), ' ', 10) as plugin_gateway_error
 , count(1) as count
 from v_report_payment_provider_errors_sub1 v1
 left join analytics_payment_auths apa on apa.record_id = v1.record_id and v1.op = 'AUTH'

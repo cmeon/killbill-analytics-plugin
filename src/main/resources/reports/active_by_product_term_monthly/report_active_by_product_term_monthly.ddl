@@ -14,7 +14,7 @@ START TRANSACTION;
   insert into report_active_by_product_term_monthly
   select
     x.tenant_record_id
-  , cal.d day
+  , cal.d as day
   , x.product_name
   , x.billing_period
   , x.count
@@ -22,7 +22,7 @@ START TRANSACTION;
   join (
     select
       tenant_record_id
-    , last_day(day) day
+    , last_day(day) as day
     , product_name
     , billing_period
     , count

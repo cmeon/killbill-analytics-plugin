@@ -13,7 +13,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_auths a
-FORCE INDEX(analytics_payment_auths_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY
@@ -37,7 +36,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_captures a
-FORCE INDEX(analytics_payment_captures_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY
@@ -61,7 +59,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_chargebacks a
-FORCE INDEX(analytics_payment_chargebacks_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY
@@ -85,7 +82,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_credits a
-FORCE INDEX(analytics_payment_credits_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY
@@ -109,7 +105,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_purchases a
-FORCE INDEX(analytics_payment_purchases_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY
@@ -133,7 +128,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_refunds a
-FORCE INDEX(analytics_payment_refunds_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY
@@ -157,7 +151,6 @@ SELECT
 , sum(case when a.payment_transaction_status = 'SUCCESS' then a.converted_amount else 0 end) as converted_amount
 , a.converted_currency
 FROM analytics_payment_voids a
-FORCE INDEX(analytics_payment_voids_created_date)
 WHERE 1=1
 AND a.created_date>now() - interval '7' day
 GROUP BY

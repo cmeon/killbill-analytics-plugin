@@ -49,19 +49,19 @@ FROM
   AND v1.tenant_record_id = t1.tenant_record_id
   INNER JOIN v_report_payments_by_provider_sub3 t2 ON v1.timeframe = t2.timeframe
 GROUP BY
-  plugin_name,
-  merchant_account,
-  payment_method,
-  timeframe,
-  transaction_type,
-  converted_currency,
-  tenant_record_id
+  t1.plugin_name
+, t1.merchant_account
+, t1.payment_method
+, t2.timeframe
+, transaction_type
+, t1.converted_currency
+, t1.tenant_record_id
 ORDER BY
-  tenant_record_id,
-  merchant_account,
-  payment_method,
-  plugin_name,
-  timeframe,
-  transaction_type,
-  converted_currency;
-
+  t1.tenant_record_id
+, t1.merchant_account
+, t1.payment_method
+, t1.plugin_name
+, t2.timeframe
+, transaction_type
+, t1.converted_currency
+;
