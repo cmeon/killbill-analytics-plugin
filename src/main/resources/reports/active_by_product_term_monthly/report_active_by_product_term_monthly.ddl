@@ -1,4 +1,4 @@
-create table report_active_by_product_term_monthly as select * from v_report_active_by_product_term_monthly limit 0;
+create table if not exists report_active_by_product_term_monthly as select * from v_report_active_by_product_term_monthly limit 0;
 
 drop procedure if exists refresh_report_active_by_product_term_monthly;
 
