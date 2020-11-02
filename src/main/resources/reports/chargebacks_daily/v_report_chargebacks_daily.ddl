@@ -1,9 +1,9 @@
 create or replace view v_report_chargebacks_daily as
 select
   ac.tenant_record_id
-, EXTRACT(EPOCH FROM timestamp ac.created_date) as day
+, ac.created_date::date as day
 , ac.currency
-, sum(ac.converted_amount) as count
+, sum(ac.amount) as count
 from
   analytics_payment_chargebacks ac
 where 1=1

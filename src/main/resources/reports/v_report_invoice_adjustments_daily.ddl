@@ -2,8 +2,8 @@ create or replace view v_report_invoice_adjustments_daily as
 select
   aia.tenant_record_id
 , aia.currency
-, EXTRACT(EPOCH FROM timestamp aia.created_date) as day
-, sum(aia.converted_amount) as count
+, aia.created_date::date as day
+, sum(aia.amount) as count
 from
   analytics_invoice_adjustments aia
 where 1=1

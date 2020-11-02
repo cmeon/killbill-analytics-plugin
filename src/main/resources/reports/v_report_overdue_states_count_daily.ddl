@@ -2,7 +2,7 @@ create or replace view v_report_overdue_states_count_daily as
 select
   aat.tenant_record_id
 , aat.state
-, EXTRACT(EPOCH FROM timestamp cal.d) as day
+, cal.d::date as day
 , count(1) as count
 from
   calendar cal

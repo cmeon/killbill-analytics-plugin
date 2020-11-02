@@ -2,8 +2,8 @@ create or replace view v_report_mrr_daily as
 select
   ast.tenant_record_id
 , ifnull(ast.next_product_name, ast.prev_product_name) as product
-, EXTRACT(EPOCH FROM timestamp cal.d) as day
-, sum(ast.converted_next_mrr) as count
+, cal.d::date as day
+, sum(ast.next_mrr) as count
 from
   calendar cal
   left join analytics_subscription_transitions ast on ast.next_start_date <= cal.d
@@ -17,8 +17,8 @@ group by 1,2,3
 union select
   ast.tenant_record_id
 , 'ALL' as product
-, cal.d as day
-, sum(ast.converted_next_mrr) as count
+, cal.d::date as day
+, sum(ast.next_mrr) as count
 from
   calendar cal
   left join analytics_subscription_transitions ast on ast.next_start_date <= cal.d

@@ -1,9 +1,9 @@
 create or replace view v_report_refunds_total_daily as
 select
   ar.tenant_record_id
-, EXTRACT(EPOCH FROM timestamp ar.created_date) as day
+, ar.created_date::date as day
 , ar.currency as currency
-, sum(ar.converted_amount) as count
+, sum(ar.amount) as count
 from
   analytics_payment_refunds ar
 where 1=1
