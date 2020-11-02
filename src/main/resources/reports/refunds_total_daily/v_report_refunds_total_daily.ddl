@@ -1,7 +1,7 @@
 create or replace view v_report_refunds_total_daily as
 select
   ar.tenant_record_id
-, ar.created_date as day
+, timestamp(ar.created_date) as day
 , ar.currency as currency
 , sum(ar.converted_amount) as count
 from

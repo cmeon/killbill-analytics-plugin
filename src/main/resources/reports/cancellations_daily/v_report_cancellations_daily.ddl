@@ -2,7 +2,7 @@ create or replace view v_report_cancellations_daily as
 select
   ast.tenant_record_id
 , ast.prev_phase phase
-, ast.next_start_date as day
+, timestamp(ast.next_start_date) as day
 , count(0) as count
 from
   analytics_subscription_transitions ast
