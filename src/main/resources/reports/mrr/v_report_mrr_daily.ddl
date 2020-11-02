@@ -2,7 +2,7 @@ create or replace view v_report_mrr_daily as
 select
   ast.tenant_record_id
 , ifnull(ast.next_product_name, ast.prev_product_name) as product
-, timestamp(cal.d) as day
+, EXTRACT(EPOCH FROM timestamp cal.d) as day
 , sum(ast.converted_next_mrr) as count
 from
   calendar cal

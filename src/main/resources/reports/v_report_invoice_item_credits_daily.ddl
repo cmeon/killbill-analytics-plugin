@@ -2,7 +2,7 @@ create or replace view v_report_invoice_item_credits_daily as
 select
   aic.tenant_record_id
 , aic.currency
-, timestamp(aic.created_date) as day
+, EXTRACT(EPOCH FROM timestamp aic.created_date) as day
 , sum(aic.amount) as count
 from
   analytics_invoice_credits aic
