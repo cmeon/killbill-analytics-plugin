@@ -56,6 +56,9 @@ GROUP BY
 , transaction_type
 , t1.converted_currency
 , t1.tenant_record_id
+, v1.failed
+, v1.total
+, v1.converted_amount
 ORDER BY
   t1.tenant_record_id
 , t1.merchant_account
